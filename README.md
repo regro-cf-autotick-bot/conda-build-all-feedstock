@@ -1,25 +1,33 @@
-About conda-build-all
-=====================
+About conda-build-all-feedstock
+===============================
+
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/conda-build-all-feedstock/blob/main/LICENSE.txt)
 
 Home: https://github.com/conda-tools/conda-build-all
 
 Package license: BSD 3-clause
 
-Feedstock license: BSD 3-Clause
-
 Summary: conda build-all is a conda subcommand which allows multiple distributions to be built (and uploaded) in a single command
-
-
 
 Current build status
 ====================
 
-All platforms: [![Circle CI](https://circleci.com/gh/conda-forge/conda-build-all-feedstock.svg?style=shield)](https://circleci.com/gh/conda-forge/conda-build-all-feedstock)
+
+<table><tr><td>All platforms:</td>
+    <td>
+      <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=5518&branchName=main">
+        <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/conda-build-all-feedstock?branchName=main">
+      </a>
+    </td>
+  </tr>
+</table>
 
 Current release info
 ====================
-Version: [![Anaconda-Server Badge](https://anaconda.org/conda-forge/conda-build-all/badges/version.svg)](https://anaconda.org/conda-forge/conda-build-all)
-Downloads: [![Anaconda-Server Badge](https://anaconda.org/conda-forge/conda-build-all/badges/downloads.svg)](https://anaconda.org/conda-forge/conda-build-all)
+
+| Name | Downloads | Version | Platforms |
+| --- | --- | --- | --- |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-conda--build--all-green.svg)](https://anaconda.org/conda-forge/conda-build-all) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/conda-build-all.svg)](https://anaconda.org/conda-forge/conda-build-all) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/conda-build-all.svg)](https://anaconda.org/conda-forge/conda-build-all) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/conda-build-all.svg)](https://anaconda.org/conda-forge/conda-build-all) |
 
 Installing conda-build-all
 ==========================
@@ -28,23 +36,52 @@ Installing `conda-build-all` from the `conda-forge` channel can be achieved by a
 
 ```
 conda config --add channels conda-forge
+conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `conda-build-all` can be installed with:
+Once the `conda-forge` channel has been enabled, `conda-build-all` can be installed with `conda`:
 
 ```
 conda install conda-build-all
 ```
 
-It is possible to list all of the versions of `conda-build-all` available on your platform with:
+or with `mamba`:
+
+```
+mamba install conda-build-all
+```
+
+It is possible to list all of the versions of `conda-build-all` available on your platform with `conda`:
 
 ```
 conda search conda-build-all --channel conda-forge
 ```
 
+or with `mamba`:
+
+```
+mamba search conda-build-all --channel conda-forge
+```
+
+Alternatively, `mamba repoquery` may provide more information:
+
+```
+# Search all versions available on your platform:
+mamba repoquery search conda-build-all --channel conda-forge
+
+# List packages depending on `conda-build-all`:
+mamba repoquery whoneeds conda-build-all --channel conda-forge
+
+# List dependencies of `conda-build-all`:
+mamba repoquery depends conda-build-all --channel conda-forge
+```
+
 
 About conda-forge
 =================
+
+[![Powered by
+NumFOCUS](https://img.shields.io/badge/powered%20by-NumFOCUS-orange.svg?style=flat&colorA=E1523D&colorB=007D8A)](https://numfocus.org)
 
 conda-forge is a community-led conda channel of installable packages.
 In order to provide high-quality builds, the process has been automated into the
@@ -54,13 +91,15 @@ for each of the installable packages. Such a repository is known as a *feedstock
 A feedstock is made up of a conda recipe (the instructions on what and how to build
 the package) and the necessary configurations for automatic building using freely
 available continuous integration services. Thanks to the awesome service provided by
-[CircleCI](https://circleci.com/), [AppVeyor](http://www.appveyor.com/)
-and [TravisCI](https://travis-ci.org/) it is possible to build and upload installable
-packages to the [conda-forge](https://anaconda.org/conda-forge)
-[Anaconda-Cloud](http://docs.anaconda.org/) channel for Linux, Windows and OSX respectively.
+[Azure](https://azure.microsoft.com/en-us/services/devops/), [GitHub](https://github.com/),
+[CircleCI](https://circleci.com/), [AppVeyor](https://www.appveyor.com/),
+[Drone](https://cloud.drone.io/welcome), and [TravisCI](https://travis-ci.com/)
+it is possible to build and upload installable packages to the
+[conda-forge](https://anaconda.org/conda-forge) [anaconda.org](https://anaconda.org/)
+channel for Linux, Windows and OSX respectively.
 
 To manage the continuous integration and simplify feedstock maintenance
-[conda-smithy](http://github.com/conda-forge/conda-smithy) has been developed.
+[conda-smithy](https://github.com/conda-forge/conda-smithy) has been developed.
 Using the ``conda-forge.yml`` within this repository, it is possible to re-render all of
 this feedstock's supporting files (e.g. the CI configuration files) with ``conda smithy rerender``.
 
@@ -96,7 +135,18 @@ build distinct package versions.
 
 In order to produce a uniquely identifiable distribution:
  * If the version of a package **is not** being increased, please add or increase
-   the [``build/number``](http://conda.pydata.org/docs/building/meta-yaml.html#build-number-and-string).
+   the [``build/number``](https://docs.conda.io/projects/conda-build/en/latest/resources/define-metadata.html#build-number-and-string).
  * If the version of a package **is** being increased, please remember to return
-   the [``build/number``](http://conda.pydata.org/docs/building/meta-yaml.html#build-number-and-string)
+   the [``build/number``](https://docs.conda.io/projects/conda-build/en/latest/resources/define-metadata.html#build-number-and-string)
    back to 0.
+
+Feedstock Maintainers
+=====================
+
+* [@bjlittle](https://github.com/bjlittle/)
+* [@isuruf](https://github.com/isuruf/)
+* [@jakirkham](https://github.com/jakirkham/)
+* [@marqh](https://github.com/marqh/)
+* [@ocefpaf](https://github.com/ocefpaf/)
+* [@pelson](https://github.com/pelson/)
+
