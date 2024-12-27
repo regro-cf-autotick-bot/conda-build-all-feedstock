@@ -6,23 +6,23 @@ package:
 
 source:
     fn: conda-build-all_v{{ version }}.tar.gz
-    url: https://github.com/conda-tools/conda-build-all/archive/v{{version}}.tar.gz
+    url: https://github.com/conda-tools/conda-build-all/archive/v{{ version }}.tar.gz
     sha256: e296f5eebae17f6a5ee90af9c2838fb5241656509cd008375f4bfbd704f53da8
 
 build:
-  number: 1
+  number: 2
   noarch: python
   script: python setup.py install --single-version-externally-managed --record=record.txt
   entry_points:
     - conda-build-all = conda_build_all.cli:main
 
 requirements:
-  build:
-    - python
+  host:
+    - python {{ python_min }}
     - setuptools
 
   run:
-    - python
+    - python >={{ python_min }}
     - gitpython
     - conda >=4.2
     # https://github.com/conda-tools/conda-build-all/issues/97
@@ -31,6 +31,8 @@ requirements:
     - mock
 
 test:
+  requires:
+    - python {{ python_min }}
   imports:
     - conda_build_all
   commands:
